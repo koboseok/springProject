@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper">
+
+<!-- resultMap : 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매핑 시키는 역할  -->
+	<resultMap type = "Member" id ="member_rm">
+		<!-- DB의 기본 키 -->
+			<id property="memberNo" column="MEMBER_NO"/>
+			
+			<!-- DB의 일반 컬럼들 -->
+	   		<result property="memberId" column="MEMBER_ID"/>
+	  		<result property="memberPwd" column="MEMBER_PWD"/>
+	  		<result property="memberName" column="MEMBER_NM"/>
+	  		<result property="memberPhone" column="MEMBER_PHONE"/>
+	  		<result property="memberEmail" column="MEMBER_EMAIL"/>
+	  		<result property="memberAddress" column="MEMBER_ADDR"/>
+	  		<result property="memberInterest" column="MEMBER_INTEREST"/>
+	  		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE"/>
+	  		<result property="memberStatus" column="MEMBER_STATUS"/>
+	  		<result property="memberGrade" column="MEMBER_GRADE"/>
+		
+	
+	</resultMap>
+	<!-- parameterType : 전달 받아오는 자료형 -->
+	<!-- resultType : 반환받은 결과를 저장할때의 자료형 (단일행,단일열) 컬럼명과 필드명이 같을 경우  -->
+	<!-- resultMap : 다중 -->
+	<!-- 조건절 : #  값으로 인식시킬꺼면-->
+	<!-- 컬럼명 조합 시 $ SQL문 자체로 인식시킬꺼면  -->
+	<!-- 로그인 -->
+	<select id="loginAction" parameterType="Member" resultMap="member_rm">
+		SELECT * FROM MEMBER
+		WHERE MEMBER_ID = #{memberId} 
+		<!-- AND MEMBER_PWD = #{memberPwd} -->
+		AND MEMBER_STATUS = 'Y'
+		
+	
+	</select>
+			
+
+
+
+
+</mapper>

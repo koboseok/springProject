@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper2">
+
+<!-- resultMap : 조회된 result set의 컬럼명과 VO의 필드명이 같지 않을 때 매핑 시키는 역할  -->
+	<resultMap type = "Member" id ="member_rm">
+		<!-- DB의 기본 키 -->
+			<id property="memberNo" column="MEMBER_NO"/>
+			
+			<!-- DB의 일반 컬럼들 -->
+	   		<result property="memberId" column="MEMBER_ID"/>
+	  		<result property="memberPwd" column="MEMBER_PWD"/>
+	  		<result property="memberName" column="MEMBER_NM"/>
+	  		<result property="memberPhone" column="MEMBER_PHONE"/>
+	  		<result property="memberEmail" column="MEMBER_EMAIL"/>
+	  		<result property="memberAddress" column="MEMBER_ADDR"/>
+	  		<result property="memberInterest" column="MEMBER_INTEREST"/>
+	  		<result property="memberEnrollDate" column="MEMBER_ENROLL_DATE"/>
+	  		<result property="memberStatus" column="MEMBER_STATUS"/>
+	  		<result property="memberGrade" column="MEMBER_GRADE"/>
+		
+	
+	</resultMap>
+	<!-- parameterType : 전달 받아오는 자료형 -->
+	<!-- resultType : 반환받은 결과를 저장할때의 자료형 (단일행,단일열) 컬럼명과 필드명이 같을 경우  -->
+	<!-- resultMap : 다중 -->
+	<!-- 조건절 : #  값으로 인식시킬꺼면-->
+	<!-- 컬럼명 조합 시 $ SQL문 자체로 인식시킬꺼면  -->
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="idDupCheck" parameterType="string" resultType="_int">
+		
+		SELECT COUNT(*) FROM MEMBER
+		WHERE MEMBER_ID = #{memberId}
+		AND MEMBER_STATUS = 'Y'
+		
+	</select>
+	
+	<insert id="signUp" parameterType="Member" >
+	INSERT INTO MEMBER 
+	VALUES(SEQ_MNO.NEXTVAL, #{memberId}, #{memberPwd} , #{memberName} , #{memberPhone} , #{memberEmail},
+						#{memberAddress} ,#{memberInterest}, DEFAULT ,DEFAULT , DEFAULT)
+	
+	</insert>
+	<!-- 		updateMember : 이메일 , 전화번호 , 주소 , 관심분야 -->
+	<update id="updateAction" parameterType="Member">
+	
+	UPDATE MEMBER SET
+	MEMBER_PHONE = #{memberPhone},
+	MEMBER_EMAIL = #{memberEmail},
+	MEMBER_ADDR = #{memberAddress},
+	MEMBER_INTEREST = #{memberInterest}
+	WHERE MEMBER_NO = #{memberNo}
+	
+	</update>
+			
+	
+	<!-- 비밀번호 조회 -->		
+	<select id="selectPwd" parameterType="_int" resultType="string">
+	SELECT MEMBER_PWD 	
+	FROM MEMBER
+	WHERE MEMBER_NO = #{memberNo}
+	
+	</select>
+	
+	<!-- 비밀번호 변경  -->
+	<update id="updatePwd" parameterType="map">
+		UPDATE MEMBER SET
+		MEMBER_PWD = #{newPwd}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	 <update id="updateStatus" parameterType="_int">
+      UPDATE MEMBER SET
+      MEMBER_STATUS = 'N'
+      WHERE MEMBER_NO = #{memberNo}
+   </update>
+
+
+
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<!-- appender : 로그를 어디에 어떤 형식으로 출력할지 결정 -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<!-- 기본값 : System.out  -> 콘솔에 출력 된다.-->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- 날짜별 로그인 로그 파일 생성하기 -->
+	<appender name="myDailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+
+	  <!-- 로그 파일 생성 위치(C드라이브 하위 절대경로로 지정됨) -->
+		<param name="file" value="C:/workspace/6_Framework/springProject/src/main/webapp/resources/logs/logfile.log"/>
+		
+		<!-- 이전 내용에 이어서 작성 -->
+		<param name="Append" value="true"/>
+		
+		<!-- 로그파일 문자인코딩 -->
+	  <param name="encoding" value="UTF-8" />
+	    
+	  <!-- 파일명에 입력할 날짜 패턴(다음날 파일명 뒤쪽에 추가됨) -->
+		<param name="DatePattern" value="'.'yyyyMMdd"/>
+	
+		<!-- layout 지정 -->
+	  <layout class="org.apache.log4j.PatternLayout">
+	      <param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss} [%p] %m%n"/>
+	  </layout>
+	</appender>
+	
+	
+	<!-- Application Loggers -->
+	<!-- logger : 로그를 출력하는 코드 적용 범위 지정  -->
+	<!-- log level
+		trace : 추적 레벨 . 상세하게 필요한 내용들을 모두 출력 
+		debug : 프로그램 개발 과정에서 흐름 파악 용도 
+		info 	: 상태 변경과 같은 정보성 메세지 출력 레벨 
+		warn 	: 처리 가능한 문제, 향후 에러를 발생시킬 수 도 있는 내용을 경고할때 쓰는 레벨 
+		error : 요청 처리 중 문제 발생 
+		fatal	: 아주 심각한 오류가 발생한 상태 시스템적 문제가 발생한 경우로 애플리케이션이 동작되지 않는 상태 . 		
+	 -->
+	<logger name="com.kh.spring">
+		<level value="debug" /> <!-- com.kh.spring 하위에 작성된 info 레벨 이상의 로그만 출력  -->
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- Root Logger(최상위 로거, 기본값 지정) -->
+	<root>
+	
+		<!-- priority : logger로 지정되지 않은 패키지에서 로그 출력 코드가 작성되었을 때 인지할 수 있는 최소 log level을 지정  -->
+		<priority value="warn" />
+		
+		<!-- appender-ref : logger에 appender가 지정되지 않았을 경우  기본값으로 지정할 appender 작성   -->		
+		<!-- appender에 이름이 console-->
+		<appender-ref ref="console" />
+		<appender-ref ref="myDailyRollingFile" />
+		
+	</root>
+	
+</log4j:configuration>

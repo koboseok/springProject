@@ -1,0 +1,47 @@
+21-02-22 14:47:58 [INFO] Root WebApplicationContext: initialization started
+21-02-22 14:48:01 [INFO] Root WebApplicationContext initialized in 2927 ms
+21-02-22 14:48:01 [INFO] Initializing Servlet 'appServlet'
+21-02-22 14:48:04 [INFO] Completed initialization in 3724 ms
+21-02-22 14:48:39 [INFO] Root WebApplicationContext: initialization started
+21-02-22 14:48:41 [INFO] Root WebApplicationContext initialized in 2873 ms
+21-02-22 14:48:42 [INFO] Initializing Servlet 'appServlet'
+21-02-22 14:48:45 [INFO] Completed initialization in 3758 ms
+21-02-22 14:49:00 [DEBUG] [Start] : BoardServiceImpl - selectDBFileList()
+21-02-22 14:49:00 [DEBUG] [parameter] : []
+21-02-22 14:49:00 [DEBUG] [ip] : Spring Scheduler
+21-02-22 14:49:00 [DEBUG] ----------- Service 수행 ----------
+21-02-22 14:49:02 [DEBUG] [Return Value] : [210217101100_08055.png, 210215101502_56576.PNG, 210210174651_93081.png, 210210174247_26760.PNG, 210210174247_19297.PNG, 210209165113_91666.PNG, 210209165113_42231.png, 210210175515_12742.PNG, 210217101324_44788.png, 210217113129_27891.PNG, 210217113129_17274.PNG, 210217124859_69980.png, 210217124755_07960.PNG, 210217124811_82966.PNG, 210217124820_36301.PNG, 210217124838_11483.PNG, 210217124849_30300.PNG, 210217141701_33339.PNG, 210217141539_05892.PNG, 210217141546_91125.PNG, 210217141554_88380.PNG, 210217141619_04935.PNG, 210217141601_11480.PNG, 210217141631_81492.PNG, 210218103511_87434.png]
+21-02-22 14:49:02 [DEBUG] [Running Time] : 1937ms
+
+21-02-22 14:49:35 [INFO] Root WebApplicationContext: initialization started
+21-02-22 14:49:38 [INFO] Root WebApplicationContext initialized in 2921 ms
+21-02-22 14:49:38 [INFO] Initializing Servlet 'appServlet'
+21-02-22 14:49:42 [INFO] Completed initialization in 3728 ms
+21-02-22 14:49:47 [DEBUG] [Start] : BoardServiceImpl - getPageInfo()
+21-02-22 14:49:47 [DEBUG] [parameter] : [1, 1]
+21-02-22 14:49:47 [DEBUG] [ip] : 0:0:0:0:0:0:0:1
+21-02-22 14:49:47 [DEBUG] ----------- Service 수행 ----------
+21-02-22 14:49:49 [DEBUG] [Return Value] : PageInfo [currentPage=1, listCount=506, limit=10, pageSize=10, maxPage=51, startPage=1, endPage=10, boardType=1]
+21-02-22 14:49:49 [DEBUG] [Running Time] : 1976ms
+
+21-02-22 14:49:49 [DEBUG] [Start] : BoardServiceImpl - selectList()
+21-02-22 14:49:49 [DEBUG] [parameter] : [PageInfo [currentPage=1, listCount=506, limit=10, pageSize=10, maxPage=51, startPage=1, endPage=10, boardType=1]]
+21-02-22 14:49:49 [DEBUG] [ip] : 0:0:0:0:0:0:0:1
+21-02-22 14:49:49 [DEBUG] ----------- Service 수행 ----------
+21-02-22 14:49:49 [DEBUG] [Return Value] : [Board [boardNo=527, boardTitle=asd, boardContent=null, memberId=user05, readCount=1, categoryName=운동, boardCreateDate=2021-02-19 14:22:17.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=523, boardTitle=asdasd, boardContent=null, memberId=user05, readCount=1, categoryName=요리, boardCreateDate=2021-02-17 11:31:29.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=504, boardTitle=테ㅔ스트세트스, boardContent=null, memberId=user05, readCount=11, categoryName=음악, boardCreateDate=2021-02-10 17:46:51.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=503, boardTitle=제목222222222222, boardContent=null, memberId=user05, readCount=29, categoryName=운동, boardCreateDate=2021-02-09 16:51:13.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=502, boardTitle=파일정보 넘어가는지 테스트, boardContent=null, memberId=user05, readCount=2, categoryName=영화, boardCreateDate=2021-02-09 14:46:54.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=501, boardTitle=게시글만 쓰는 테스트, boardContent=null, memberId=user05, readCount=2, categoryName=운동, boardCreateDate=2021-02-09 12:22:38.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=500, boardTitle=500번째 게시글, boardContent=null, memberId=admin, readCount=11, categoryName=음악, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=499, boardTitle=499번째 게시글, boardContent=null, memberId=admin, readCount=3, categoryName=운동, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=498, boardTitle=498번째 게시글, boardContent=null, memberId=admin, readCount=1, categoryName=음악, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=497, boardTitle=497번째 게시글, boardContent=null, memberId=admin, readCount=0, categoryName=운동, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판]]
+21-02-22 14:49:49 [DEBUG] [Running Time] : 32ms
+
+21-02-22 14:49:49 [DEBUG] [Start] : BoardServiceImpl - selectThumbnailList()
+21-02-22 14:49:49 [DEBUG] [parameter] : [[Board [boardNo=527, boardTitle=asd, boardContent=null, memberId=user05, readCount=1, categoryName=운동, boardCreateDate=2021-02-19 14:22:17.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=523, boardTitle=asdasd, boardContent=null, memberId=user05, readCount=1, categoryName=요리, boardCreateDate=2021-02-17 11:31:29.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=504, boardTitle=테ㅔ스트세트스, boardContent=null, memberId=user05, readCount=11, categoryName=음악, boardCreateDate=2021-02-10 17:46:51.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=503, boardTitle=제목222222222222, boardContent=null, memberId=user05, readCount=29, categoryName=운동, boardCreateDate=2021-02-09 16:51:13.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=502, boardTitle=파일정보 넘어가는지 테스트, boardContent=null, memberId=user05, readCount=2, categoryName=영화, boardCreateDate=2021-02-09 14:46:54.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=501, boardTitle=게시글만 쓰는 테스트, boardContent=null, memberId=user05, readCount=2, categoryName=운동, boardCreateDate=2021-02-09 12:22:38.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=500, boardTitle=500번째 게시글, boardContent=null, memberId=admin, readCount=11, categoryName=음악, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=499, boardTitle=499번째 게시글, boardContent=null, memberId=admin, readCount=3, categoryName=운동, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=498, boardTitle=498번째 게시글, boardContent=null, memberId=admin, readCount=1, categoryName=음악, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판], Board [boardNo=497, boardTitle=497번째 게시글, boardContent=null, memberId=admin, readCount=0, categoryName=운동, boardCreateDate=2021-02-08 10:40:40.0, boardModifyDate=null, boardStatus=null, boardCode=0, boardName=자유게시판]]]
+21-02-22 14:49:49 [DEBUG] [ip] : 0:0:0:0:0:0:0:1
+21-02-22 14:49:49 [DEBUG] ----------- Service 수행 ----------
+21-02-22 14:49:49 [DEBUG] [Return Value] : [Attachment [fileNo=8, filePath=/resources/uploadImages, fileName=210210174247_26760.PNG, fileLevel=0, parentBoardNo=503], Attachment [fileNo=23, filePath=/resources/uploadImages, fileName=210217113129_27891.PNG, fileLevel=0, parentBoardNo=523]]
+21-02-22 14:49:49 [DEBUG] [Running Time] : 90ms
+
+21-02-22 14:50:00 [DEBUG] [Start] : BoardServiceImpl - selectDBFileList()
+21-02-22 14:50:00 [DEBUG] [parameter] : []
+21-02-22 14:50:00 [DEBUG] [ip] : Spring Scheduler
+21-02-22 14:50:00 [DEBUG] ----------- Service 수행 ----------
+21-02-22 14:50:00 [DEBUG] [Return Value] : [210217101100_08055.png, 210215101502_56576.PNG, 210210174651_93081.png, 210210174247_26760.PNG, 210210174247_19297.PNG, 210209165113_91666.PNG, 210209165113_42231.png, 210210175515_12742.PNG, 210217101324_44788.png, 210217113129_27891.PNG, 210217113129_17274.PNG, 210217124859_69980.png, 210217124755_07960.PNG, 210217124811_82966.PNG, 210217124820_36301.PNG, 210217124838_11483.PNG, 210217124849_30300.PNG, 210217141701_33339.PNG, 210217141539_05892.PNG, 210217141546_91125.PNG, 210217141554_88380.PNG, 210217141619_04935.PNG, 210217141601_11480.PNG, 210217141631_81492.PNG, 210218103511_87434.png]
+21-02-22 14:50:00 [DEBUG] [Running Time] : 12ms
+
