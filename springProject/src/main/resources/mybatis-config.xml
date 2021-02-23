@@ -15,6 +15,7 @@
       <typeAlias type="com.kh.spring.member.model.vo.Member" alias="Member"/>
       <typeAlias type="com.kh.spring.board.model.vo.Board" alias="Board"/>
       <typeAlias type="com.kh.spring.board.model.vo.Attachment" alias="Attachment"/>
+      <typeAlias type="com.kh.spring.board.model.vo.Reply" alias="Reply"/>
       
    </typeAliases>
 	
@@ -22,6 +23,7 @@
 		<mapper resource="/mappers/board-mapper.xml"></mapper>
 		<mapper resource="/mappers/member-mapper.xml"></mapper>
 		<mapper resource="/mappers/member-mapper2.xml"></mapper>
+		<mapper resource="/mappers/reply-mapper.xml"></mapper>
 	</mappers>
 	
 </configuration>
