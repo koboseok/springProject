@@ -53,6 +53,31 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 	
 	
+//	댓글 삭제 Service 구현
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int deleteReply(int replyNo) {
+		
+		return dao.deleteReply(replyNo);
+	}
+	
+//	대댓글 삽입 Service 구현 
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertChildReply(Map<String, Object> map) {
+
+		// 크로스 사이트 스크립팅 방지
+		map.put("replyContent", replaceParameter((String) map.get("replyContent")));
+
+		// ajax로 textarea 내용을 얻어올 경우 개행문자가 \n으로 취급됨.
+		// 개행문자 처리 \n -> <br>
+		map.put("replyContent", ((String) map.get("replyContent")).replaceAll("\n", "<br>"));
+		
+		return dao.insertChildReply(map);
+	}
+	
+	
+	
 	// 크로스 사이트 스크립트 방지 메소드
 	private String replaceParameter(String param) {
 		String result = param;

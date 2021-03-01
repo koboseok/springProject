@@ -22,6 +22,49 @@
 		font-size: 3.5rem;
 	}
 }
+
+.chatting-area{
+   width : 100%;
+   height : 450px;
+}
+
+.display-chatting{
+   width: 100%;
+   height: 300px;
+   border : 1px solid black;
+   overflow: auto;
+   list-style : none;
+   padding : 10px 10px;
+}
+
+.chat{
+   display: inline-block;
+   border-radius: 20%;
+   padding : 5px;
+   background-color: #eee;
+}
+
+
+.input-area{
+   width: 100%;
+   height: 80px;
+   display: flex;
+}
+
+#inputChatting{
+   width : 90%;
+   resize : none;
+}
+
+#send{
+   width : 10%;
+   height : 100%;
+}
+
+.myChat{
+   text-align: right;
+}
+
 </style>
 <!-- Custom styles for this template -->
 <link href="resources/css/carousel.css" rel="stylesheet">
@@ -84,37 +127,121 @@
 						</tbody>
 					</table>
 				</div>
-				
-				<div class="col-lg-4">
-					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
-					<title>Placeholder</title><rect width="100%" height="100%" fill="#777" />
-					<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-					<h2>Heading</h2>
-					<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-					<p>
-						<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-					</p>
+
+				<div class="col-lg-8">
+					<div class="chatting-area">
+						<ul class="display-chatting"></ul>
+
+						<div class="input-area">
+							<textarea id="inputChatting" rows="3"></textarea>
+							<button id="send">보내기</button>
+						</div>
+					</div>
 				</div>
-				
-				<div class="col-lg-4">
-					<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
-					<title>Placeholder</title>
-					<rect width="100%" height="100%" fill="#777" />
-					<text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-					<h2>Heading</h2>
-					<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-					<p>
-						<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
-					</p>
-				</div>
-				<!-- /.col-lg-4 -->
+
+
 			</div>
 		</div>
 		<!-- /.row -->
 	</main>
+	
+	 <!-------------------- sockjs를 이용한 WebSocket 구현을 위해 라이브러리 추가 --------------------->
+	 <!-- 자바스크립트에서 웹소켓을 생성하고 사용하기 위한 -->
+   <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
 	<script>
-		// 게시판 조회수 Top 5(ajax)
+		//--------------------- WebSocket -------------------------
+		
+		var chattingSock; // SockJs를 이용한 WebSocket 객체 저장 변수 선언
+		
+		// 로그인이 되어 있을때만 
+		// 서버 측 /chat 이라는 주소로 통신을 할 수 있는 WebSocket 객체 생성
+		<c:if test="${!empty loginMember}">
+			chattingSock = new SockJS("${contextPath}/chat");
+		</c:if>
+		
+		// 로그인된 회원이 채팅을 입력한 후 보내기 버튼을 클릭한 경우 
+		// (전달할 내용 : 입력한 채팅 + 로그인한 회원의 아이디 )
+		
+		var memberId = "${loginMember.memberId}";
+		
+		$("#inputChatting").keyup(function(e){
+			
+			if(e.keyCode == 13){
+				$("#send").click();
+			}
+			
+		});
+		
+		
+		$("#send").on("click",function(){
+			
+			
+				
+			if(memberId == ""){ // 로그인이 되어있지 않은 경우
+				
+				alert("로그인 후 이용해주세요");
+				
+			} else {
+				
+				var chat = $("#inputChatting").val(); // 채팅창에 입력된 값을 얻어온다.
+				
+				if(chat.trim().length == 0){ // 채팅이 입력되지 않은 상태로 보내기 버튼을 클릭한 경우
+					
+					alert("채팅을 입력해주세요.");
+					
+				} else {
+					
+					// 자바스크립트의 객체를 문자열로 표현해주는게 JSON이다.
+					var obj = {}; // 비어있는 객체 선언 
+					obj.memberId = memberId; // obj객체에 memberId 속성을 추가하고 값으로 memberId 변수 값을 추가 
+					obj.chat = chat;
+					
+					// 작성자와 채팅 내용이 담긴 obj 객체를 JSON 형태로 반환하여 웹소켓 핸들러로 보내기
+					chattingSock.send(JSON.stringify(obj));
+					// JSON.stringify(obj) : 자바스크립트 객체 obj를 JSON 형태의 문자열로 변환하는 자바스크립트 내장 함수 
+					// 자바스크립트에서 자바로 객체를 보낼때 사용한다.
+					
+					$("#inputChatting").val(""); // 채팅을 보낸 후 채팅창에 남아있는 글자를 삭제 
+					
+					
+					
+				}
+				
+			}
+			
+		});
+		
+		// WebSocket 객체 ChattingSock이 서버로부터 받은 메세지가 있을 경우 수행되는 콜백 함수
+		chattingSock.onmessage = function(event){
+			// event : 서버로부터 메세지를 전달받은 이벤트와 관련된 모든 내용이 저장된 객체
+			// event.data : 전달받은 메세지 
+			var obj = JSON.parse(event.data);
+			// JSON.parse() : JSON 데이터를 자바스크립트 객체로 변환하는 함수 
+			// console.log(obj.memberId);
+			// console.log(obj.chat);
+      var li = $("<li>");
+      var p = $("<p class='chat'>");
+      
+      var writer = obj.memberId;
+      var chat = obj.chat.replace(/\n/g, "<br>");   
+      
+      
+      if(obj.memberId == memberId){
+         li.addClass("myChat");
+         p.html(chat).css("backgroundColor", "yellow");
+      }else{
+         li.html("<b>" + writer + "</b><br>");
+         p.html(chat);
+      }
+      
+      li.append(p);
+      $(".display-chatting").append(li);
+      
+      // 채팅 입력 시 스크롤을 가장 아래로 내리기
+      $(".display-chatting").scrollTop($(".display-chatting")[0].scrollHeight);
+      
+		}
 	
 	</script>
 

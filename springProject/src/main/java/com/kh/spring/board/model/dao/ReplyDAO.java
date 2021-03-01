@@ -39,4 +39,20 @@ public class ReplyDAO {
 	public int updateReply(Reply updateReply) {
 		return sqlSession.update("replyMapper.updateReply", updateReply);
 	}
+
+	/** 댓글 삭제 DAO
+	 * @param replyNo
+	 * @return result
+	 */
+	public int deleteReply(int replyNo) {
+		return sqlSession.update("replyMapper.deleteReply", replyNo);
+	}
+
+	/** 대댓글 삽입 DAO
+	 * @param map
+	 * @return result
+	 */
+	public int insertChildReply(Map<String, Object> map) {
+		return sqlSession.insert("replyMapper.insertChildReply", map);
+	}
 }

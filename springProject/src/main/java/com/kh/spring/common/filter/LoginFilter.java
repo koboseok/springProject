@@ -34,9 +34,9 @@ public class LoginFilter implements Filter {
 //		회원 전용 페이지 중 로그인이 되어있지 않아도 접근 가능한 페이지 경로 추가
 		ALLOWED_PATH.add("/member/login"); // 로그인 페이지 요청 
 		ALLOWED_PATH.add("/member/loginAction"); // 로그인 요청 
-		ALLOWED_PATH.add("/member/signUp"); // 회원가입 페이지 요청 
-		ALLOWED_PATH.add("/member/signUpAction"); // 회원가입  요청 
-		ALLOWED_PATH.add("/member/idDupCheck"); // 아이디 중복 검사 요청 
+		ALLOWED_PATH.add("/member2/signUp"); // 회원가입 페이지 요청 
+		ALLOWED_PATH.add("/member2/signUpAction"); // 회원가입  요청 
+		ALLOWED_PATH.add("/member2/idDupCheck"); // 아이디 중복 검사 요청 
 		
 //		ServletRequest 매개변수를 HttpServletRequest로 다운 캐스팅
 		HttpServletRequest req = (HttpServletRequest)request; 

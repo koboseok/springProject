@@ -84,6 +84,32 @@ public class ReplyController {
 	}
 	
 	
+//	댓글 삭제 Controller 
+	@RequestMapping("deleteReply/{replyNo}")
+	public int deleteReply(@PathVariable("replyNo") int replyNo) {
+		
+		int result = service.deleteReply(replyNo);
+		
+		return result;
+	}
+	
+	
+//	대댓글 삽입 Controller
+	@RequestMapping("insertChildReply/{parentBoardNo}")
+	public int insertChildReply(@PathVariable("parentBoardNo") int parentBoardNo,
+								int parentReplyNo , String replyContent, int replyWriter) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("parentBoardNo" , parentBoardNo);
+		map.put("parentReplyNo" , parentReplyNo);
+		map.put("replyContent" , replyContent);
+		map.put("replyWriter" , replyWriter);
+		
+		
+		
+		return service.insertChildReply(map) ;
+	}
+	
 	
 	
 	

@@ -21,9 +21,9 @@
 	
 	<mappers>
 		<mapper resource="/mappers/board-mapper.xml"></mapper>
+		<mapper resource="/mappers/reply-mapper.xml"></mapper>
 		<mapper resource="/mappers/member-mapper.xml"></mapper>
 		<mapper resource="/mappers/member-mapper2.xml"></mapper>
-		<mapper resource="/mappers/reply-mapper.xml"></mapper>
 	</mappers>
 	
 </configuration>

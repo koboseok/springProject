@@ -30,11 +30,15 @@
 	<select id="selectReplyList" parameterType="_int" resultMap="reply_rm">
 		
 		SELECT * FROM V_REPLY
-		WHERE REPLY_STATUS = 'Y'
-		AND PARENT_BOARD_NO = #{parentBoardNo}
-		ORDER BY REPLY_NO DESC
-		
-		<!-- 대댓글 조회 시 sql 수정 예정 -->
+		WHERE REPLY_STATUS = 'Y' 
+		AND PARENT_BOARD_NO = #{parentBoardNo} 
+		AND PARENT_REPLY_NO IN(SELECT REPLY_NO FROM V_REPLY
+                        WHERE REPLY_STATUS = 'Y'
+                        AND REPLY_DEPTH = 0
+                        AND PARENT_BOARD_NO = #{parentBoardNo})
+		ORDER BY PARENT_REPLY_NO DESC,
+        CASE WHEN PARENT_REPLY_NO = REPLY_NO THEN 99999999
+        ELSE REPLY_NO END DESC
 		
 	</select>
 	
@@ -45,8 +49,8 @@
 	</insert> 
 	
 
-	
-	<update id="updateReply" parameterType="map">
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="Reply">
 		UPDATE REPLY SET
 		REPLY_CONTENT = #{replyContent},
 		REPLY_MODIFY_DT = SYSDATE
@@ -55,6 +59,22 @@
 		
 	
 	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="_int">
+		UPDATE REPLY SET 
+		REPLY_STATUS = 'N'
+		
+		WHERE REPLY_NO = #{replyNo}
+	
+	</delete>
+	
+	<!-- 대댓글 삽입 -->
+	<insert id="insertChildReply" parameterType="map">
+		INSERT INTO REPLY(REPLY_NO, REPLY_CONTENT, PARENT_BOARD_NO, PARENT_REPLY_NO, REPLY_WRITER, REPLY_DEPTH)
+		VALUES(SEQ_RNO.NEXTVAL, #{replyContent}, #{parentBoardNo}, #{parentReplyNo}, #{replyWriter}, 1)
+	
+	</insert>
 	
 	
 
